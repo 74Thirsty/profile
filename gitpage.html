@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Christopher Hirschauer — Builder at the Bleeding Edge</title>
+<style>
+:root {
+	--primary-color: #4B9CD3;
+	--secondary-color: #1A1A1A;
+	--background-color: #FFFFFF;
+	--text-color: #000000;
+	--shadow-color: rgba(75, 156, 211, 0.2);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+	font-family: 'Arial', sans-serif;
+	line-height: 1.6;
+	overflow-x: hidden;
+	background-image: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.99));
+	overflow: hidden;
+}
+
+canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.container {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 2rem;
+	position: relative;
+	z-index: 1;
+}
+
+h1 {
+	font-size: 2.5rem;
+	text-align: center;
+	margin-bottom: 2rem;
+	text-shadow: 0 0 10px var(--primary-color);
+	animation: glow 2s infinite alternate;
+	background: linear-gradient(45deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+	backdrop-filter: blur(5px);
+	border-radius: 8px;
+	box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+	padding: 1rem;
+}
+
+.section {
+	margin: 2rem 0;
+	padding: 2rem;
+	background: rgba(255, 255, 255, 0.85);
+	border-radius: 12px;
+	transition: all 0.4s ease;
+}
+
+h2 {
+	color: var(--primary-color);
+	margin-bottom: 1rem;
+	border-bottom: 2px solid var(--shadow-color);
+	padding-bottom: 0.5rem;
+}
+
+p {
+	margin-bottom: 1rem;
+	line-height: 1.7;
+}
+
+.badge-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-bottom: 2rem;
+}
+
+.badge-row img {
+	height: 28px;
+}
+
+@keyframes glow {
+	from {
+		text-shadow: 0 0 10px var(--primary-color);
+	}
+	to {
+		text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--secondary-color);
+	}
+}
+</style>
+</head>
+<body>
+
+<canvas id="gridCanvas"></canvas>
+
+<div class="container">
+<header>
+<h1>👨‍💻 Christopher Hirschauer</h1>
+</header>
+
+<div class="badge-row">
+<a href="https://www.jetbrains.com/pycharm/"><img src="https://img.shields.io/badge/Built%20with-PyCharm-000000?logo=pycharm&logoColor=gold"></a>
+<a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11-blue?logo=python"></a>
+<a href="https://docs.soliditylang.org/"><img src="https://img.shields.io/badge/Solidity-0.8.20-navy?logo=ethereum"></a>
+<a href="https://www.flashbots.net"><img src="https://img.shields.io/badge/Flashbots-MEV%20Bundle-silver?logo=thunderbird"></a>
+<a href="https://christopherhirschauer.bio"><img src="https://img.shields.io/badge/C.Hirschauer-Senior%20Developer-skyblue?logo=parrotsecurity"></a>
+</div>
+
+<section class="section">
+<h2>🚀 About</h2>
+<p>Builder at the bleeding edge of MEV, automation, and high-speed arbitrage systems. Specializing in Solidity, EVM internals, graph-based DEX routing, and real-time flashloan execution.</p>
+</section>
+
+<section class="section">
+<h2>💻 Core Stack</h2>
+<p><strong>Languages:</strong> Python, Solidity, Bash</p>
+<p><strong>Chains:</strong> Ethereum, Arbitrum, Polygon, Optimism</p>
+<p><strong>Frameworks:</strong> Hardhat, Brownie, Web3.py, Flashbots Bundle</p>
+</section>
+
+<section class="section">
+<h2>📈 Systems Built</h2>
+<ul>
+<li>Flashloan arbitrage engine using Aave, Curve, Uniswap, and Balancer</li>
+<li>Async data store with real-time subgraph ingestion</li>
+<li>Smart contract executor with ABI-safe calldata builders</li>
+<li>Automated MEV bundle sender with bribe prioritization</li>
+</ul>
+</section>
+
+<section class="section">
+<h2>📫 Contact</h2>
+<p>💬 DM or collab inquiries via <a href="https://christopherhirschauer.bio" target="_blank">christopherhirschauer.bio</a></p>
+</section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+<script>
+const CELL_SIZE = 40;
+const COLOR_R = 123;
+const COLOR_G = 175;
+const COLOR_B = 212;
+const STARTING_ALPHA = 200;
+const BACKGROUND_COLOR = '#FFFFFF';
+const PROB_OF_NEIGHBOR = 0.5;
+const AMT_FADE_PER_FRAME = 5;
+
+let colorWithAlpha;
+let numRows;
+let numCols;
+let currentRow = -2;
+let currentCol = -2;
+let allNeighbors = [];
+
+function setup() {
+	let cnv = createCanvas(windowWidth, windowHeight);
+	cnv.style("position", "fixed");
+	cnv.style("inset", 0);
+	cnv.style("z-index", "-1");
+	colorWithAlpha = color(COLOR_R, COLOR_G, COLOR_B, STARTING_ALPHA);
+	background(BACKGROUND_COLOR);
+	noFill();
+	stroke(colorWithAlpha);
+	strokeWeight(1);
+	numRows = Math.ceil(windowHeight / CELL_SIZE);
+	numCols = Math.ceil(windowWidth / CELL_SIZE);
+}
+
+function draw() {
+	background(BACKGROUND_COLOR);
+	let row = floor(mouseY / CELL_SIZE);
+	let col = floor(mouseX / CELL_SIZE);
+	if (row !== currentRow || col !== currentCol) {
+		currentRow = row;
+		currentCol = col;
+		allNeighbors.push(...getRandomNeighbors(row, col));
+	}
+	let x = col * CELL_SIZE;
+	let y = row * CELL_SIZE;
+	stroke(colorWithAlpha);
+	rect(x, y, CELL_SIZE, CELL_SIZE);
+	for (let neighbor of allNeighbors) {
+		let neighborX = neighbor.col * CELL_SIZE;
+		let neighborY = neighbor.row * CELL_SIZE;
+		neighbor.opacity = max(0, neighbor.opacity - AMT_FADE_PER_FRAME);
+		stroke(COLOR_R, COLOR_G, COLOR_B, neighbor.opacity);
+		rect(neighborX, neighborY, CELL_SIZE, CELL_SIZE);
+	}
+	allNeighbors = allNeighbors.filter((neighbor) => neighbor.opacity > 0);
+}
+
+function getRandomNeighbors(row, col) {
+	let neighbors = [];
+	for (let dRow = -1; dRow <= 1; dRow++) {
+		for (let dCol = -1; dCol <= 1; dCol++) {
+			let neighborRow = row + dRow;
+			let neighborCol = col + dCol;
+			let isCurrentCell = dRow === 0 && dCol === 0;
+			let isInBounds = neighborRow >= 0 && neighborRow < numRows && neighborCol >= 0 && neighborCol < numCols;
+			if (!isCurrentCell && isInBounds && Math.random() < PROB_OF_NEIGHBOR) {
+				neighbors.push({
+					row: neighborRow,
+				   col: neighborCol,
+				   opacity: 255
+				});
+			}
+		}
+	}
+	return neighbors;
+}
+
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
+	numRows = Math.ceil(windowHeight / CELL_SIZE);
+	numCols = Math.ceil(windowWidth / CELL_SIZE);
+	background(BACKGROUND_COLOR);
+}
+</script>
+</body>
+</html>
