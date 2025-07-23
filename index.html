@@ -16,9 +16,21 @@
 </head>
 <body class="bg-bgDark text-white scroll-smooth relative">
 
+  <!-- Navigation -->
+  <nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
+    <div class="max-w-5xl mx-auto flex justify-between items-center text-sm sm:text-base font-mono text-primary">
+      <a href="index.html" class="hover:text-white transition-all">🏠 Home</a>
+      <div class="space-x-6">
+        <a href="about.html" class="hover:text-white transition-all">About</a>
+        <a href="projects.html" class="hover:text-white transition-all">Projects</a>
+        <a href="contact.html" class="hover:text-white transition-all">Contact</a>
+        <a href="./accounting/accounting.html" class="hover:text-white transition-all">AutoGAAP Accounting</a> <!-- Added AutoGAAP Link -->
+      </div>
+    </div>
+  </nav>
+
   <!-- Background -->
   <div class="background-img"></div>
-  <!-- Canvas for Mouse Effect -->
   <canvas id="gridCanvas" class="absolute top-0 left-0 z-0"></canvas>
 
   <!-- Hero -->
