@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guestbook</title>
+  <title>Christopher Hirschauer | Blockchain Architect</title>
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles/styles.css">
   
@@ -15,92 +15,78 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
 </head>
 <body class="bg-bgDark text-white scroll-smooth relative">
-  <!-- Guestbook Form -->
-  <div class="max-w-5xl mx-auto p-6 mt-10 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10">
-    <h2 class="text-3xl font-bold text-primary">Sign the Guestbook</h2>
-    <form id="guestbookForm" class="mt-4">
-      <input type="text" id="name" placeholder="Enter your name" class="input" required /><br><br>
-      <input type="email" id="email" placeholder="Enter your email" class="input" required /><br><br>
-      <button type="submit" class="bg-primary text-white py-2 px-4 rounded-xl">Submit</button>
-    </form>
-  </div>
 
-  <!-- Display the Guestbook Entries -->
-  <div id="guestbookEntries" class="max-w-5xl mx-auto p-6 mt-10 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10">
-    <h3 class="text-2xl font-bold text-primary">Guestbook Entries</h3>
-    <div id="entries"></div>
-  </div>
+  <!-- Background -->
+  <div class="background-img"></div>
+  <canvas id="gridCanvas"></canvas>
 
-  <script>
-    // Function to fetch user's IP on page load
-    function fetchIP() {
-      fetch('https://api.ipify.org?format=json') // Request to the ipify API
-        .then(response => response.json())     // Parse the JSON response
-        .then(data => {
-          const userIP = data.ip;               // Extract the IP address from the response
-          storeGuestbookData(userIP);           // Store IP with the other data
-        })
-        .catch(error => {
-          console.error("Error fetching IP:", error);
-        });
-    }
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto p-6 mt-10 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+    <h1 class="text-5xl sm:text-6xl font-bold text-primary drop-shadow-lg">Christopher Hirschauer</h1>
+    <p class="text-xl sm:text-2xl mt-4 text-gray-300">Blockchain Systems Architect & Python Developer</p>
+    <div class="mt-8 flex justify-center">
+      <img src="https://i.ibb.co/yFqhRjGg/IMG-0386.png" alt="Banner" class="w-[90%] h-auto rounded-xl shadow-lg" />
+    </div>
+  </section>
 
-    // Store guestbook data in localStorage (including IP)
-    function storeGuestbookData(userIP) {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
+  <!-- About -->
+  <section id="about" class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+    <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">👤 About Me</h2>
+    <p class="text-lg text-gray-200 leading-relaxed">
+      I'm a systems architect and blockchain developer with roots in the most unforgiving side of sales: a decade of outbound telemarketing. That grind taught me resilience, persuasion, and the value of clear execution—skills that now fuel my work building autonomous arbitrage systems in crypto.
+    </p>
+    <p>After 10+ years in high-pressure sales environments, I pivoted into tech—studying computer networking at WiT and business at Iowa Central. Today, I design and build high-performance, off-chain Python infrastructure for MEV arbitrage, powered by:</p>
+    <ul>
+      <li>Plugin-based ingestion of on-chain data from DEXs (Uniswap, Curve, Balancer, etc.)</li>
+      <li>Liquidity graph modeling and arbitrage detection using Bellman-Ford, Dijkstra, and Floyd-Warshall</li>
+      <li>Flashloan orchestration and loan/purchase normalization</li>
+      <li>Solidity smart contracts used purely for atomic execution—off-chain logic handles the rest</li>
+      <li>Clean, maintainable Python with strategic logging and strict separation of concerns</li>
+      <li>Shared state architecture optimized for extensibility and speed</li>
+      <li>Full-stack awareness from RPC-level details to execution pipelines and MEV bundles</li>
+    </ul>
+  </section>
 
-      if (name && email) {
-        const guestbookEntry = {
-          name: name,
-          email: email,
-          ip: userIP,
-          timestamp: new Date().toISOString()  // Add timestamp
-        };
+  <!-- Specialties -->
+  <section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+    <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">🧠 Specialties</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-200">
+      <li>Python-first MEV agents</li>
+      <li>Plugin-based DEX ingestion (Uniswap, Curve, Balancer)</li>
+      <li>Bellman-Ford, Dijkstra, Floyd-Warshall algorithms</li>
+      <li>Atomic execution via Solidity</li>
+      <li>Flashloan orchestration</li>
+      <li>Security-focused engineering</li>
+      <li>CI/CD pipelines</li>
+      <li>Custom dashboards, blogs, and simulations</li>
+    </ul>
+  </section>
 
-        // Get existing entries or create a new array
-        let entries = JSON.parse(localStorage.getItem('guestbookEntries')) || [];
-        entries.push(guestbookEntry);
-        localStorage.setItem('guestbookEntries', JSON.stringify(entries));
+  <!-- Projects -->
+  <section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+    <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">📘 Books & Projects</h2>
+    <ul class="space-y-4 text-gray-200">
+      <li><strong>Inside the Black Forest:</strong> Deep dive into MEV strategy and execution.</li>
+      <li><strong>Ctrl+C, Ctrl+V, and the Death of Reason</strong></li>
+      <li><strong>Smart Contracts:</strong> Engineering the future of business and finance.</li>
+      <li><strong>Downloader:</strong> User Friendly yt-dlp script.</li>
+      <li><strong>dexSwapper:</strong> Multi-token, multi-hop arbitrage execution bot.</li>
+      <li><strong>alphaEdge</strong></li>
+      <li><strong>autoGAAP</strong></li>
+    </ul>
+  </section>
 
-        // Clear form after submission
-        document.getElementById('guestbookForm').reset();
+  <!-- Contact -->
+  <section class="max-w-5xl mx-auto p-6 mt-16 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+    <h2 class="h2-pulse text-3xl font-bold text-primary mb-6">📬 Let's Connect</h2>
+    <p class="text-gray-200 mb-4">Want to work together, collaborate, or just talk shop?</p>
+    <a href="mailto:c.hirschauer@outlook.com" class="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:scale-105 transition-all">✉️ Email Me</a>
+  </section>
 
-        // Display the updated guestbook entries
-        displayGuestbookEntries();
-      }
-    }
+  <footer class="text-center py-10 text-sm text-gray-400 relative z-10">
+    Relentless Code. Autonomous Systems. Engineered for Impact.
+  </footer>
 
-    // Display guestbook entries
-    function displayGuestbookEntries() {
-      const entries = JSON.parse(localStorage.getItem('guestbookEntries')) || [];
-      const entriesContainer = document.getElementById('entries');
-      entriesContainer.innerHTML = '';
-
-      entries.forEach(entry => {
-        const entryDiv = document.createElement('div');
-        entryDiv.classList.add('p-4', 'my-4', 'bg-[#1A1A1A]', 'rounded-xl');
-        entryDiv.innerHTML = `
-          <p><strong>Name:</strong> ${entry.name}</p>
-          <p><strong>Email:</strong> ${entry.email}</p>
-          <p><strong>IP Address:</strong> ${entry.ip}</p>
-          <p><strong>Timestamp:</strong> ${entry.timestamp}</p>
-        `;
-        entriesContainer.appendChild(entryDiv);
-      });
-    }
-
-    // Call the IP fetching function on page load
-    window.onload = function() {
-      fetchIP();
-      displayGuestbookEntries(); // Load existing entries from localStorage
-    };
-
-    // Form submission
-    document.getElementById('guestbookForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      fetchIP(); // Fetch the IP address when the form is submitted
-    });
-  </script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>
