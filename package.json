@@ -1,0 +1,23 @@
+{
+  "name": "profile-2",
+  "version": "1.0.0",
+  "description": "![Christopher Hirschauer](https://img.shields.io/badge/Christopher-Hirschauer-blue?style=flat-square\\&logo=linkedin) Welcome to the official **Christopher Hirschauer** personal website! This website serves as a hub for all my projects, dev profile, technical blogs, and more. It's a portfolio that showcases my work as a blockchain systems architect and Python developer, along with the core principles and practices that drive my work.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/74Thirsty/profile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/74Thirsty/profile/issues"
+  },
+  "homepage": "https://github.com/74Thirsty/profile#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.11"
+  }
+}

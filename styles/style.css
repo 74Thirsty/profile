@@ -73,10 +73,292 @@ canvas {
   transform: none;
 }
 
+/* Card Styling with Laser Effect */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #1A1A1A; /* Dark background */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Laser Scan Animation */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 0, 92, 0.5), rgba(255, 0, 92, 0.5));
+  background-size: 200% 100%;
+  animation: laserScan 4s linear infinite;
+  z-index: 10; /* Place the laser on top of the card content */
+}
+
+/* Optional: For smooth hover effects */
+.card:hover::before {
+  background-position: 100% 50%;
+}
+
+/* Laser Scan Keyframes */
+@keyframes laserScan {
+  0% {
+    background-position: -100% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
 /* Media Query for Responsiveness (Mobile / Tablet) */
 @media (max-width: 768px) {
   html, body {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
+}
+/* Additional Styles for Mobile Responsiveness */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+  .card {
+    padding: 1rem; /* Reduce padding for smaller screens */
+  }
+  .background-img {
+    background-size: cover; /* Ensure the background image covers the screen */
+  }
+  .background-overlay {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker overlay for better contrast */
+  }
+  canvas {
+    width: 100vw; /* Ensure canvas covers the full viewport */
+    height: 100vh; /* Ensure canvas covers the full viewport */
+  }
+  .h2-pulse {
+    font-size: 1.5rem; /* Adjust heading size for smaller screens */
+  }
+  .fade-in {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Faster transition for smaller screens */
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none; /* Ensure elements are fully visible */
+  }
+  .card:hover {
+    transform: scale(1.02); /* Slightly smaller hover effect on mobile */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4); /* Adjust shadow for mobile */
+  }
+  .card::before {
+    animation: laserScan 3s linear infinite; /* Faster laser scan on mobile */  
+    background-size: 300% 100%; /* Adjust background size for mobile */
+  }
+  .card:hover::before {
+    background-position: 100% 50%; /* Ensure laser scan effect is visible on hover */
+  }
+}
+/* Additional Styles for Tablet Responsiveness */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    font-size: 16px; /* Adjust font size for tablets */
+  }
+  .card {
+    padding: 1.5rem; /* Adjust padding for tablets */
+  }
+  .h2-pulse {
+    font-size: 2rem; /* Adjust heading size for tablets */
+  }
+  .fade-in {
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Maintain transition for tablets */
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none; /* Ensure elements are fully visible */
+  }
+  .card:hover {
+    transform: scale(1.03); /* Slightly larger hover effect on tablets */
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5); /* Adjust shadow for tablets */
+  }
+  .card::before {
+    animation: laserScan 3.5s linear infinite; /* Adjust laser scan speed for tablets */
+    background-size: 250% 100%; /* Adjust background size for tablets */
+  }
+  .card:hover::before {
+    background-position: 100% 50%; /* Ensure laser scan effect is visible on hover */
+  }
+}
+/* Additional Styles for Desktop Responsiveness */
+@media (min-width: 769px) {
+  body {
+    font-size: 18px; /* Maintain larger font size for desktops */
+  }
+  .card {
+    padding: 2rem; /* Maintain larger padding for desktops */
+  }
+  .h2-pulse {
+    font-size: 2.5rem; /* Maintain larger heading size for desktops */
+  }
+  .fade-in {
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Maintain transition for desktops */
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none; /* Ensure elements are fully visible */
+  }
+  .card:hover {
+    transform: scale(1.05); /* Maintain larger hover effect on desktops */
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5); /* Maintain larger shadow for desktops */
+  }
+  .card::before {
+    animation: laserScan 4s linear infinite; /* Maintain laser scan speed for desktops */
+    background-size: 200% 100%; /* Maintain background size for desktops */
+  }
+  .card:hover::before {
+    background-position: 100% 50%; /* Ensure laser scan effect is visible on hover */
+  }
+}
+/* Additional Styles for Accessibility */
+:root {
+  --primary-color: #B0E0FF; /* Silvery Blue */
+  --secondary-color: #7BAFD4; /* Lighter Blue */
+  --background-color: #1A1A1A; /* Dark Background */
+  --text-color: #FFFFFF; /* White Text */
+}
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+h2, h3 {
+  color: var(--primary-color);
+}
+h2.pulse, h3.pulse {
+  animation: pulseSilveryBlue 2.5s ease-in-out infinite;
+}
+/* Ensure all text is legible against the dark background */
+p, li {
+  color: var(--text-color);
+  line-height: 1.6; /* Improved readability */
+}
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+/* Ensure all interactive elements are accessible */
+button, input[type="button"], input[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+  background-color: var(--secondary-color);
+}
+button:focus, input[type="button"]:focus, input[type="submit"]:focus {
+  outline: 2px solid var(--primary-color); /* Focus outline for accessibility */
+  outline-offset: 2px;
+}
+/* Ensure all form elements are styled consistently */
+input, textarea, select {
+  background-color: #2A2A2A; /* Dark input background */
+  color: var(--text-color);
+  border: 1px solid #444; /* Subtle border */
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%; /* Full width for inputs */
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary-color); /* Highlight border on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px var(--primary-color); /* Subtle glow effect */
+}
+/* Ensure all links are styled consistently */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+/* Ensure all headings are styled consistently */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  margin: 0.5rem 0; /* Consistent margin for headings */
+}
+h1 {
+  font-size: 2.5rem; /* Larger font size for main heading */
+}
+h2 {
+  font-size: 2rem; /* Slightly smaller for subheadings */
+}
+h3 {
+  font-size: 1.75rem; /* Smaller for tertiary headings */
+}
+h4, h5, h6 {
+  font-size: 1.5rem; /* Smaller for lower-level headings */
+}
+/* Ensure all lists are styled consistently */
+ul, ol {
+  padding-left: 1.5rem; /* Indent lists */
+  margin: 1rem 0; /* Consistent margin for lists */
+}
+li {
+  margin-bottom: 0.5rem; /* Space between list items */
+}
+/* Ensure all paragraphs are styled consistently */
+p {
+  margin: 1rem 0; /* Consistent margin for paragraphs */
+  line-height: 1.6; /* Improved readability */
+  color: var(--text-color); /* Ensure text is legible */
+}
+/* Ensure all sections are styled consistently */
+section {
+  padding: 2rem; /* Consistent padding for sections */
+  background-color: #2A2A2A; /* Slightly lighter background for sections */
+  border-radius: 1rem; /* Rounded corners for sections */
+  margin-bottom: 2rem; /* Space between sections */
+}
+/* Ensure all articles are styled consistently */
+article {
+  padding: 2rem; /* Consistent padding for articles */
+  background-color: #2A2A2A; /* Slightly lighter background for articles */
+  border-radius: 1rem; /* Rounded corners for articles */
+  margin-bottom: 2rem; /* Space between articles */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow for articles */
+}
+/* Ensure all footers are styled consistently */
+footer {
+  padding: 1rem; /* Consistent padding for footer */
+  background-color: #1A1A1A; /* Dark background for footer */
+  color: var(--text-color); /* Ensure text is legible */
+  text-align: center; /* Centered text for footer */
+  border-top: 1px solid #444; /* Subtle border at the top */
+  margin-top: 2rem; /* Space above footer */
+}
+/* Ensure all headers are styled consistently */
+header {
+  padding: 1rem; /* Consistent padding for header */
+  background-color: #1A1A1A; /* Dark background for header */
+  color: var(--text-color); /* Ensure text is legible */
+  text-align: center; /* Centered text for header */
+  border-bottom: 1px solid #444; /* Subtle border at the bottom */
+  margin-bottom: 2rem; /* Space below header */
 }
