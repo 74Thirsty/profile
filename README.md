@@ -137,4 +137,3 @@ This project is licensed under the **MIT License**. Feel free to use, modify, or
 ### 🎨 **Design Inspiration**
 
 The design is heavily inspired by futuristic and cyberpunk aesthetics, focusing on dark themes with neon accents and smooth transitions. The interactive elements (like the mouse-reactive grid) are powered by **p5.js** to make the website more engaging and dynamic.
-
