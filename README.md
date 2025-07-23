@@ -73,7 +73,9 @@ root/
 ![Web3 Innovator](https://img.shields.io/badge/Web3%20Innovator-F0DB4F?style=flat-square\&logo=ethereum)
 ![Security First](https://img.shields.io/badge/Security%20First-F5A623?style=flat-square\&logo=lock)
 ![Tech Educator](https://img.shields.io/badge/Tech%20Educator-007ACC?style=flat-square\&logo=github)
-![Author](https://img.shields.io/badge/Author-Books%20Written-blue?style=flat-square\&logo=bookstack)
+[![Published Author](https://img.shields.io/badge/Published%20Author-Amazon%20Audible-blue?logo=amazon&logoColor=white)](https://www.amazon.com/author/christopherhirschauer) 
+
+*I’m a published author with works available on platforms like Amazon and Audible.*
 
 ---
 
