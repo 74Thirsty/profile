@@ -1,407 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Christopher Hirschauer | Blockchain Architect</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christopher Hirschauer | Blockchain Architect</title>
 
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-	theme: {
-		extend: {
-			fontFamily: {
-				mono: ['Fira Code', 'monospace']
-			},
-			colors: {
-				primary: '#7BAFD4',
-				bgDark: '#1A1A1A'
-			}
-		}
-	}
-};
-</script>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    colors: {
+                        primary: '#7BAFD4',
+                        bgDark: '#1A1A1A'
+                    }
+                }
+            }
+        };
+    </script>
 
-<style>
-body {
-	font-family: 'Fira Code', monospace;
-	margin: 0;
-	padding: 0;
-}
-.background-img {
-	background-image: url('https://i.ibb.co/3mFnchVp/Block-Chain-Data.png');
-	background-size: cover;
-	background-position: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	opacity: 0.5;
-	z-index: -2;
-	pointer-events: none;
-}
-canvas {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: -1;
-}
-@keyframes pulseSilveryBlue {
-	0%, 100% {
-		color: #B0E0FF;
-		text-shadow: 0 0 5px #7BAFD4, 0 0 10px #B0E0FF;
-	}
-	50% {
-		color: #7BAFD4;
-		text-shadow: 0 0 15px #B0E0FF, 0 0 25px #7BAFD4;
-	}
-}
-.h2-pulse {
-	animation: pulseSilveryBlue 2.5s ease-in-out infinite;
-}
-.fade-in {
-	opacity: 0;
-	transform: translateY(20px);
-	transition: opacity 1s ease-out, transform 1s ease-out;
-}
-.fade-in.visible {
-	opacity: 1;
-	transform: none;
-}
-@media (max-width: 768px) {
-	html, body {
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-	}
-}
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <link rel="stylesheet" href="styles/styles.css" />
 </head>
+
 <body class="bg-bgDark text-white scroll-smooth relative">
-<nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
-  <div class="max-w-5xl mx-auto flex justify-between items-center text-sm sm:text-base font-mono text-primary">
-    <a href="index.html" class="hover:text-white transition-all">🏠 Home</a>
-    <div class="space-x-6">
-      <a href="about.html" class="hover:text-white transition-all">About</a>
-      <a href="projects.html" class="hover:text-white transition-all">Projects</a>
-      <a href="contact.html" class="hover:text-white transition-all">Contact</a>
-    </div>
-  </div>
-</nav>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Crypto Ticker</title>
-<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-<style>
-body {
-	margin: 0;
-	overflow: hidden;
-	background: transparent;
-}
-canvas {
-	display: block;
-	background: transparent !important;
-}
-</style>
-</head>
-<body>
-<script>
-let coins = [
-	{ name: "BTC" },
-	{ name: "ETH" },
-	{ name: "SOL" },
-	{ name: "XRP" },
-	{ name: "DOGE" },
-	{ name: "AVAX" },
-	{ name: "ADA" },
-	{ name: "LINK" },
-	{ name: "MATIC"}
-];
 
-let positions = [];
-let speed = 1.2;                         // Scroll speed
-let fontSize = 12;                      // Smaller font size
-let tickerHeight = 24;                  // Reduced height
-let dotSpacing = 4;
-let dotSize = 1.2;
-let uncBlue, dotGray;
+    <!-- Navigation -->
+    <nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
+        <div class="max-w-5xl mx-auto flex justify-between items-center text-sm sm:text-base font-mono text-primary">
+            <a href="index.html" class="hover:text-white transition-all">🏠 Home</a>
+            <div class="space-x-6">
+                <a href="about.html" class="hover:text-white transition-all">About</a>
+                <a href="projects.html" class="hover:text-white transition-all">Projects</a>
+                <a href="contact.html" class="hover:text-white transition-all">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-let lastUpdateTime = 0;
-let updateInterval = 0;
+    <!-- Background -->
+    <div class="background-img"></div>
 
-function setup() {
-	createCanvas(windowWidth, tickerHeight); // Slimmer ticker
-	textFont('monospace');
-	textSize(fontSize);
-	textAlign(LEFT, CENTER);
-	uncBlue = color(0, 170, 255); // Cyan blue (from your mockup)
-	dotGray = color(19, 41, 75, 80);        // UNC Dark Navy (semi-transparent for dot effect)
-	
-	
-	let x = width;
-	for (let i = 0; i < coins.length; i++) {
-		let label = coins[i].name; // Use just ticker name to get width
-		positions[i] = x;
-		x += textWidth(label) + 60;
-	}
-	
-	updateInterval = random(2000, 3000);
-	lastUpdateTime = millis();
-	updatePrices();
-}
+    <!-- Hero Section -->
+    <section class="max-w-5xl mx-auto p-6 mt-10 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+        <h1 class="text-5xl sm:text-6xl font-bold text-primary drop-shadow-lg">Christopher Hirschauer</h1>
+        <p class="text-xl sm:text-2xl mt-4 text-gray-300">Blockchain Systems Architect & Python Developer</p>
+        <div class="mt-8 flex justify-center">
+            <img src="https://i.ibb.co/yFqhRjGg/IMG-0386.png" alt="Banner" class="w-[90%] h-auto rounded-xl shadow-lg" />
+        </div>
+    </section>
 
-function draw() {
-	clear(); // Keep background transparent
-	drawDotMatrix();
-	
-	if (millis() - lastUpdateTime > updateInterval) {
-		updatePrices();
-		lastUpdateTime = millis();
-		updateInterval = random(2000, 3000);
-	}
-	
-	fill(uncBlue);
-	for (let i = 0; i < coins.length; i++) {
-		let label = formatCoin(coins[i]);
-		text(label, positions[i], tickerHeight / 2);
-		positions[i] -= speed;
-		
-		if (positions[i] < -textWidth(label)) {
-			let maxX = max(...positions);
-			positions[i] = maxX + textWidth(label) + 60;
-		}
-	}
-}
+    <!-- About Section -->
+    <section id="about" class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+        <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">👤 About Me</h2>
+        <p class="text-lg text-gray-200 leading-relaxed">
+            I'm a systems architect and blockchain developer with roots in the most unforgiving side of sales: a decade of outbound telemarketing. That grind taught me resilience, persuasion, and the value of clear execution—skills that now fuel my work building autonomous arbitrage systems in crypto.
+            <br><br>
+            After 10+ years in high-pressure sales environments, I pivoted into tech—studying computer networking at WiT and business at Iowa Central. Today, I design and build high-performance, off-chain Python infrastructure for MEV arbitrage, powered by:
+            <ul>
+                <li>Plugin-based ingestion of on-chain data from DEXs (Uniswap, Curve, Balancer, etc.)</li>
+                <li>Liquidity graph modeling and arbitrage detection using Bellman-Ford, Dijkstra, and Floyd-Warshall</li>
+                <li>Flashloan orchestration and loan/purchase normalization</li>
+                <li>Solidity smart contracts used purely for atomic execution—off-chain logic handles the rest</li>
+            </ul>
+        </p>
+    </section>
 
-function drawDotMatrix() {
-	noStroke();
-	fill(dotGray);
-	for (let y = dotSpacing / 2; y < height; y += dotSpacing) {
-		for (let x = dotSpacing / 2; x < width; x += dotSpacing) {
-			ellipse(x, y, dotSize, dotSize); // Tiny dot
-		}
-	}
-}
-// 🚀 Fetch real prices from CoinGecko API instead of faking them
-async function updatePrices() {
-	// 🔗 Map internal coin names to CoinGecko IDs
-	const coinMap = {
-		BTC: 'bitcoin',
-		ETH: 'ethereum',
-		SOL: 'solana',
-		XRP: 'ripple',
-		DOGE: 'dogecoin',
-		AVAX: 'avalanche-2',
-		ADA: 'cardano',
-		LINK: 'chainlink',
-                MATIC: 'matic-network'
-	};
-	
-	// 🧱 Build CoinGecko request URL
-	const ids = Object.values(coinMap).join(',');
-	const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`;
-	
-	try {
-		const response = await fetch(url);
-		const data = await response.json();
-		
-		// 🔁 Update your coin array with real prices
-		for (let i = 0; i < coins.length; i++) {
-			const cgId = coinMap[coins[i].name];
-			const livePrice = data[cgId]?.usd;
-			if (livePrice) {
-				coins[i].price = livePrice;
-			}
-		}
-	} catch (err) {
-		console.error("Failed to fetch live prices:", err);
-	}
-}
+    <!-- Specialties Section -->
+    <section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+        <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">🧠 Specialties</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-200">
+            <li>Python-first MEV agents</li>
+            <li>Plugin-based DEX ingestion (Uniswap, Curve, Balancer)</li>
+            <li>Bellman-Ford, Dijkstra, Floyd-Warshall algorithms</li>
+            <li>Atomic execution via Solidity</li>
+        </ul>
+    </section>
 
-function formatCoin(coin) {
-	// ⏳ If price not loaded yet, just return coin ticker
-	if (coin.price === undefined) return coin.name;
-	
-	// ✅ Once price is available, format normally
-	let p = coin.price > 1 ? coin.price.toFixed(2) : coin.price.toFixed(5);
-	return `${coin.name}: $${p}`;
-}
+    <!-- Projects Section -->
+    <section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+        <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">📘 Books & Projects</h2>
+        <ul class="space-y-4 text-gray-200">
+            <li><strong>Inside the Black Forest:</strong> Deep dive into MEV strategy and execution.</li>
+            <li><strong>Ctrl+C, Ctrl+V, and the Death of Reason</strong></li>
+        </ul>
+    </section>
 
+    <!-- Contact Section -->
+    <section class="max-w-5xl mx-auto p-6 mt-16 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+        <h2 class="h2-pulse text-3xl font-bold text-primary mb-6">📬 Let's Connect</h2>
+        <p class="text-gray-200 mb-4">Want to work together, collaborate, or just talk shop?</p>
+        <a href="mailto:c.hirschauer@outlook.com" class="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:scale-105 transition-all">✉️ Email Me</a>
+    </section>
 
-function windowResized() {
-	resizeCanvas(windowWidth, tickerHeight);
-}
-</script>
-</body>
-</html>
+    <footer class="text-center py-10 text-sm text-gray-400 relative z-10">
+        Relentless Code. Autonomous Systems. Engineered for Impact.
+    </footer>
 
-<!-- Background -->
-<div class="background-img"></div>
-<canvas id="gridCanvas"></canvas>
-
-<!-- Hero -->
-<section class="max-w-5xl mx-auto p-6 mt-10 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
-<h1 class="text-5xl sm:text-6xl font-bold text-primary drop-shadow-lg">Christopher Hirschauer</h1>
-<p class="text-xl sm:text-2xl mt-4 text-gray-300">Blockchain Systems Architect & Python Developer</p>
-<div class="mt-8 flex justify-center">
-<img src="https://i.ibb.co/yFqhRjGg/IMG-0386.png" alt="Banner" class="w-[90%] h-auto rounded-xl shadow-lg" />
-</div>
-</section>
-
-<!-- About -->
-<section id="about" class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
-<h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">👤 About Me</h2>
-<p class="text-lg text-gray-200 leading-relaxed">
-<p>I'm a systems architect and blockchain developer with roots in the most unforgiving side of sales: a decade of outbound telemarketing. That grind taught me resilience, persuasion, and the value of clear execution—skills that now fuel my work building autonomous arbitrage systems in crypto.</p>
-<p>After 10+ years in high-pressure sales environments, I pivoted into tech—studying computer networking at WiT and business at Iowa Central. Today, I design and build high-performance, off-chain Python infrastructure for MEV arbitrage, powered by:</p>
-<br><br><p><ul>
-	<li>Plugin-based ingestion of on-chain data from DEXs (Uniswap, Curve, Balancer, etc.)</li>
-	<li>Liquidity graph modeling and arbitrage detection using Bellman-Ford, Dijkstra, and Floyd-Warshall</li>
-	<li>Flashloan orchestration and loan/purchase normalization</li>
-	<li>Solidity smart contracts used purely for atomic execution—off-chain logic handles the rest</li>
-	<li>Clean, maintainable Python with strategic logging and strict separation of concerns</li>
-	<li>Shared state architecture optimized for extensibility and speed</li>
-	<li>Full-stack awareness from RPC-level details to execution pipelines and MEV bundles</li>
-</ul></p><br><br>
-<p>Beyond core development, I’m a published author, content creator, and technical educator. I write books, guides, and technical breakdowns for those entering or advancing in Web3. My work includes:
-
-	<div><ul><br>
-		
-	<li>📚 Author of Inside the Black Forest: The MEV Playbook and Smart Contracts: The Future of Business, Finance, and Legal Systems</li><br>
-	<li>🧠 Blogs, simulations, and long-form breakdowns of on-chain infrastructure, arbitrage logic, and smart contract architecture</li><br>
-	<li>🌐 End-to-end development of websites, backends, dashboards, and APIs</li><br>
-	<li>🛠️ Hands-on scripting, debugging, refactoring, and full lifecycle system orchestration</li><br>
-	<li>🧩 Modular plugin design and app frameworks for MEV and data aggregation</li><br>
-	<li>🔐 Security-first thinking: reentrancy checks, access control, gas profiling, and more</li><br>
-	<li>💬 Personalized 1-on-1 consulting, white-label solutions, and code audits</li><br>
-	<li>🗂️ Technical documentation, architecture mapping, and codebase onboarding packages</li><br>
-	<li>🚀 From bootstrapped prototypes to production-ready agents that compete in the dark forest</li><br>
-	</div></ul>
-If it touches code, data, or on-chain execution—I do it. I don’t outsource, I don’t flinch, and I don’t ship anything I wouldn’t run myself. Always building. Always optimizing. Let’s connect.</p>
-</p></section>
-
-<!-- Specialties -->
-<section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
-<h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">🧠 Specialties</h2>
-<ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-200">
-<li>Python-first MEV agents</li>
-<li>Plugin-based DEX ingestion (Uniswap, Curve, Balancer)</li>
-<li>Bellman-Ford, Dijkstra, Floyd-Warshall algorithms</li>
-<li>Atomic execution via Solidity</li>
-<li>Flashloan orchestration</li>
-<li>Security-focused engineering</li>
-<li>CI/CD pipelines</li>
-<li>Custom dashboards, blogs, and simulations</li>
-</ul>
-</section>
-
-<!-- Projects -->
-<section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
-<h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">📘 Books & Projects</h2>
-<ul class="space-y-4 text-gray-200">
-<li><strong>Inside the Black Forest:</strong> Deep dive into MEV strategy and execution.</li>
-<li><strong>Ctrl+C, Ctrl+V, and the Death of Reason</strong>	
-<li><strong>Smart Contracts:</strong> Engineering the future of business and finance.</li>
-<li><strong>Downloader:</strong> User Friendly yt-dlp script.</li>
-<li><strong>dexSwapper:</strong> Multi-token, multi-hop arbitrage execution bot.</li>
-<li><strong>alphaEdge</strong>Alpha Edge is a powerful add-on to the arbitrage system that leverages advanced predictive algorithms to identify and execute high-return arbitrage opportunities with minimal latency, ensuring optimized profit in real-time.</li>	
-<li><strong>autoGAAP</strong></li>AutoGAAP is an automated tool designed to scan financial data and ensure compliance with Generally Accepted Accounting Principles (GAAP). It checks for common accounting adjustments like depreciation, prepaid expenses, accruals, and adjustments, providing real-time alerts and generating relevant reports to ensure accurate and compliant financial records.</ul>
-</section>
-
-<!-- Contact -->
-<section class="max-w-5xl mx-auto p-6 mt-16 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
-<h2 class="h2-pulse text-3xl font-bold text-primary mb-6">📬 Let's Connect</h2>
-<p class="text-gray-200 mb-4">Want to work together, collaborate, or just talk shop?</p>
-<a href="mailto:c.hirschauer@outlook.com" class="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:scale-105 transition-all">✉️ Email Me</a>
-</section>
-
-<footer class="text-center py-10 text-sm text-gray-400 relative z-10">
-Relentless Code. Autonomous Systems. Engineered for Impact.
-</footer>
-
-<!-- Canvas Grid Script -->
-<script>
-const CELL_SIZE = 40;
-const COLOR_R = 123;
-const COLOR_G = 175;
-const COLOR_B = 212;
-const STARTING_ALPHA = 0;
-const BACKGROUND_COLOR = [26, 26, 26];
-const PROB_OF_NEIGHBOR = 0.5;
-const AMT_FADE_PER_FRAME = 5;
-
-let numRows, numCols;
-let currentRow = -2, currentCol = -2;
-let allNeighbors = [];
-
-function setup() {
-	let cnv = createCanvas(windowWidth, windowHeight);
-	cnv.parent(document.body);
-	cnv.id('gridCanvas');
-	cnv.style('z-index', '-1');
-	clear();
-	noFill();
-	strokeWeight(1);
-	numRows = ceil(windowHeight / CELL_SIZE);
-	numCols = ceil(windowWidth / CELL_SIZE);
-}
-
-function draw() {
-	clear();
-	let row = floor(mouseY / CELL_SIZE);
-	let col = floor(mouseX / CELL_SIZE);
-	
-	if (row !== currentRow || col !== currentCol) {
-		currentRow = row;
-		currentCol = col;
-		allNeighbors.push(...getRandomNeighbors(row, col));
-	}
-	
-	for (let neighbor of allNeighbors) {
-		let x = neighbor.col * CELL_SIZE;
-		let y = neighbor.row * CELL_SIZE;
-		neighbor.opacity = max(0, neighbor.opacity - AMT_FADE_PER_FRAME);
-		stroke(COLOR_R, COLOR_G, COLOR_B, neighbor.opacity);
-		rect(x, y, CELL_SIZE, CELL_SIZE);
-	}
-	
-	allNeighbors = allNeighbors.filter(n => n.opacity > 0);
-}
-
-function getRandomNeighbors(row, col) {
-	let neighbors = [];
-	for (let dr = -1; dr <= 1; dr++) {
-		for (let dc = -1; dc <= 1; dc++) {
-			let nr = row + dr, nc = col + dc;
-			if ((dr !== 0 || dc !== 0) && nr >= 0 && nc >= 0 && nr < numRows && nc < numCols && Math.random() < PROB_OF_NEIGHBOR) {
-				neighbors.push({ row: nr, col: nc, opacity: 255 });
-			}
-		}
-	}
-	return neighbors;
-}
-
-function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
-	numRows = ceil(windowHeight / CELL_SIZE);
-	numCols = ceil(windowWidth / CELL_SIZE);
-}
-
-const observer = new IntersectionObserver((entries) => {
-	entries.forEach(entry => {
-		if (entry.isIntersecting) {
-			entry.target.classList.add('visible');
-		}
-	});
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in').forEach(section => {
-	observer.observe(section);
-});
-</script>
+    <!-- Canvas Grid Script -->
+    <script src="scripts/gridCanvas.js"></script>
+    <script src="scripts/cryptoTicker.js"></script>
+    <script src="scripts/observer.js"></script>
 </body>
 </html>
