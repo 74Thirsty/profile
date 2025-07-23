@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;  /* Prevent horizontal overflow */
+  background-color: #1A1A1A; /* Ensure the body background is dark */
 }
 
 /* Background Image Styling */
@@ -21,12 +22,24 @@ body {
   pointer-events: none; /* Prevent interaction with the background */
 }
 
+/* Overlay with transparency to enhance readability */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: -1; /* Behind the content but above the background image */
+}
+
 /* Canvas Styling for Effects */
 canvas {
   position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
+  pointer-events: none; /* Prevent canvas interaction */
 }
 
 /* Keyframes for Pulse Effect (For Text Animation) */
