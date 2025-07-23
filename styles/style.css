@@ -1,9 +1,12 @@
+/* General Body Styling */
 body {
   font-family: 'Fira Code', monospace;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;  /* Prevent horizontal overflow */
 }
 
+/* Background Image Styling */
 .background-img {
   background-image: url('https://i.ibb.co/3mFnchVp/Block-Chain-Data.png');
   background-size: cover;
@@ -15,9 +18,10 @@ body {
   height: 100vh;
   opacity: 0.5;
   z-index: -2;
-  pointer-events: none;
+  pointer-events: none; /* Prevent interaction with the background */
 }
 
+/* Canvas Styling for Effects */
 canvas {
   position: fixed;
   top: 0;
@@ -25,6 +29,7 @@ canvas {
   z-index: -1;
 }
 
+/* Keyframes for Pulse Effect (For Text Animation) */
 @keyframes pulseSilveryBlue {
   0%, 100% {
     color: #B0E0FF;
@@ -36,21 +41,25 @@ canvas {
   }
 }
 
+/* Pulse Animation Applied to Headings */
 .h2-pulse {
   animation: pulseSilveryBlue 2.5s ease-in-out infinite;
 }
 
+/* Fade-In Effect for Sections */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
+/* Visible State for Fade-In Elements */
 .fade-in.visible {
   opacity: 1;
   transform: none;
 }
 
+/* Media Query for Responsiveness (Mobile / Tablet) */
 @media (max-width: 768px) {
   html, body {
     overflow-y: auto;
