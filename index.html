@@ -8,16 +8,14 @@
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Geo Location-->
-   <script src="scripts/guestbook.js"></script>
-
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles/styles.css">
   
   <!-- p5.js for canvas effects -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+
 </head>
-<body class="bg-bgDark text-white scroll-smooth relative">
+<body class="bg-gray-800 text-white scroll-smooth relative">
 
   <!-- Navigation -->
   <nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
@@ -27,7 +25,7 @@
         <a href="about.html" class="hover:text-white transition-all">About</a>
         <a href="projects.html" class="hover:text-white transition-all">Projects</a>
         <a href="contact.html" class="hover:text-white transition-all">Contact</a>
-        <a href="./accounting/accounting.html" class="hover:text-white transition-all">AutoGAAP Accounting</a> <!-- Added AutoGAAP Link -->
+        <a href="./accounting/accounting.html" class="hover:text-white transition-all">AutoGAAP Accounting</a>
       </div>
     </div>
   </nav>
@@ -36,8 +34,8 @@
   <div class="background-img"></div>
   <canvas id="gridCanvas" class="absolute top-0 left-0 z-0"></canvas>
 
-  <!-- Hero -->
-  <section class="max-w-5xl mx-auto p-6 mt-10 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+  <!-- Hero Section -->
+  <section class="card-container max-w-5xl mx-auto p-6 mt-10 text-center">
     <h1 class="text-5xl sm:text-6xl font-bold text-primary drop-shadow-lg">Christopher Hirschauer</h1>
     <p class="text-xl sm:text-2xl mt-4 text-gray-300">Blockchain Systems Architect & Python Developer</p>
     <div class="mt-8 flex justify-center">
@@ -46,7 +44,7 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+  <section class="card-container max-w-5xl mx-auto p-6 mt-16 text-center">
     <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">👤 About Me</h2>
     <p class="text-lg text-gray-200 leading-relaxed">
       I'm a systems architect and blockchain developer with roots in the most unforgiving side of sales: a decade of outbound telemarketing. That grind taught me resilience, persuasion, and the value of clear execution—skills that now fuel my work building autonomous arbitrage systems in crypto.
@@ -63,7 +61,7 @@
   </section>
 
   <!-- Technical Philosophy Section -->
-  <section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+  <section class="card-container max-w-5xl mx-auto p-6 mt-16 text-center">
     <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">🧠 My Technical Philosophy</h2>
     <blockquote class="text-lg italic text-gray-300 border-l-4 border-primary pl-4 mb-4">
       This entire system — every line, every edge — is a living map of how I think.<br>
@@ -82,7 +80,7 @@
   </section>
 
   <!-- Specialties Section -->
-  <section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+  <section class="card-container max-w-5xl mx-auto p-6 mt-16 text-center">
     <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">🧠 Specialties</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-200">
       <li class="bg-[#0a192f]/90 backdrop-blur-sm rounded-2xl shadow-lg p-6 transition-all transform hover:scale-105 hover:bg-primary hover:text-white">
@@ -104,51 +102,8 @@
     </ul>
   </section>
 
-  <section class="mb-8">
-    <h3 class="text-2xl text-blue-300 mb-2">Core Competencies</h3>
-    <ul class="list-disc list-inside space-y-1">
-      <li>Smart Contracts, Flash Loans, Arbitrage Execution</li>
-      <li>Intrusion Detection, Honeypot Engineering, Threat Logging</li>
-      <li>Graph Models, Token Flows, Liquidity Mapping</li>
-      <li>Async Systems, Plugin Architectures, State & Cache Control</li>
-      <li>Wallet Rotation, Gas Optimization, MEV Response</li>
-      <li>Reverse Engineering Protocols & Attack Surfaces</li>
-    </ul>
-  </section>
-
-  <section class="mb-8">
-    <h3 class="text-2xl text-blue-300 mb-2">Tooling & Technologies</h3>
-    <ul class="list-disc list-inside space-y-1">
-      <li>Python (asyncio, aiohttp), Solidity, GraphQL</li>
-      <li>Tailwind, FastAPI, web3.py, ethers.js</li>
-      <li>Ethereum, Curve, Aave, Balancer, Flashbots</li>
-      <li>Custom Logger Systems, Subgraph Watchers</li>
-      <li>Linux-native development and deployment</li>
-    </ul>
-  </section>
-
-  <section class="mb-8">
-    <h3 class="text-2xl text-blue-300 mb-2">Live System Architecture</h3>
-    <p class="mb-2">Designed and built a modular Arbitrage Execution System (AES):</p>
-    <ul class="list-disc list-inside space-y-1">
-      <li>Plugin-based DEX ingestion + liquidity normalization</li>
-      <li>Loan/Trade pipelines enforcing structure + metadata</li>
-      <li>Directed graph construction with arbitrage algorithms</li>
-      <li>Execution manager with ephemeral wallets and bundle trace logging</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3 class="text-2xl text-blue-300 mb-2">Current Projects</h3>
-    <ul class="list-disc list-inside space-y-1">
-      <li><strong>Cerberus:</strong> Hacker counterintelligence trap-and-trace framework</li>
-      <li><strong>AES:</strong> High-speed DEX arbitrage execution engine</li>
-      <li><strong>AutoGov:</strong> Tax automation and income-limits filing system</li>
-    </ul>
-  </section>
-
-  <!-- Projects Section -->
-  <section class="max-w-5xl mx-auto p-6 mt-16 bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+  <!-- Books & Projects Section -->
+  <section class="card-container max-w-5xl mx-auto p-6 mt-16 text-center">
     <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">📘 Books & Projects</h2>
     <ul class="space-y-4 text-gray-200">
       <li><strong>Inside the Black Forest:</strong> Deep dive into MEV strategy and execution.</li>
@@ -162,7 +117,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section class="max-w-5xl mx-auto p-6 mt-16 text-center bg-[#0a192f]/70 backdrop-blur-sm rounded-2xl shadow-xl relative z-10 fade-in">
+  <section class="card-container max-w-5xl mx-auto p-6 mt-16 text-center">
     <h2 class="h2-pulse text-3xl font-bold text-primary mb-6">📬 Let's Connect</h2>
     <p class="text-gray-200 mb-4">Want to work together, collaborate, or just talk shop?</p>
     <a href="mailto:c.hirschauer@outlook.com" class="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:scale-105 transition-all">✉️ Email Me</a>
@@ -173,23 +128,6 @@
   </footer>
 
   <script src="scripts/main.js"></script>
-
-  <body class="bg-bgDark text-white scroll-smooth relative">
-  <!-- Apply the 3D effect to all cards globally -->
-  <section class="card-container max-w-5xl mx-auto p-6 mt-24 text-center fade-in">
-    <h1 class="text-5xl sm:text-6xl font-bold text-primary drop-shadow-lg">Christopher Hirschauer</h1>
-    <p class="text-xl sm:text-2xl mt-4 text-gray-300">Blockchain Systems Architect & Python Developer</p>
-    <div class="mt-8 flex justify-center">
-      <img src="https://i.ibb.co/yFqhRjGg/IMG-0386.png" alt="Banner" class="w-[90%] h-auto rounded-xl shadow-lg" />
-    </div>
-  </section>
-
-  <section class="card-container max-w-5xl mx-auto p-6 mt-16 text-center fade-in">
-    <h2 class="h2-pulse text-3xl font-bold text-primary text-center mb-6">👤 About Me</h2>
-    <p class="text-lg text-gray-200 leading-relaxed max-w-3xl mx-auto">
-      I'm a systems architect and blockchain developer...
-    </p>
-  </section>
 
   <!-- Add this in each section to apply the global 3D effect -->
   <footer class="text-center py-10 text-sm text-gray-400 relative z-10">
