@@ -13,22 +13,50 @@
   
   <!-- p5.js for canvas effects -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 
 </head>
 <body class="bg-gray-800 text-white scroll-smooth relative">
+<!-- Navigation -->
+<nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
+  <div class="max-w-5xl mx-auto flex justify-between items-center text-sm sm:text-base font-mono text-primary">
+    <a href="index.html" class="hover:text-white transition-all">🏠 Home</a>
 
-  <!-- Navigation -->
-  <nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
-    <div class="max-w-5xl mx-auto flex justify-between items-center text-sm sm:text-base font-mono text-primary">
-      <a href="index.html" class="hover:text-white transition-all">🏠 Home</a>
-      <div class="space-x-6">
-        <a href="about.html" class="hover:text-white transition-all">About</a>
-        <a href="projects.html" class="hover:text-white transition-all">Projects</a>
-        <a href="contact.html" class="hover:text-white transition-all">Contact</a>
-        <a href="./accounting/accounting.html" class="hover:text-white transition-all">AutoGAAP Accounting</a>
+    <div class="flex items-center space-x-6">
+      <a href="about.html" class="hover:text-white transition-all">About</a>
+
+      <!-- Projects Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
+          Projects ⌄
+        </button>
+        <div x-show="open" x-transition
+             class="absolute right-0 mt-2 w-48 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="projects.html" class="block px-4 py-2 hover:bg-gray-700">All Projects</a>
+          <a href="defi.html" class="block px-4 py-2 hover:bg-gray-700">DeFi</a>
+          <a href="ml.html" class="block px-4 py-2 hover:bg-gray-700">ML/AI</a>
+        </div>
       </div>
+
+      <!-- AutoGAAP Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
+          AutoGAAP ⌄
+        </button>
+        <div x-show="open" x-transition
+             class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="./accounting/accounting.html" class="block px-4 py-2 hover:bg-gray-700">Dashboard</a>
+          <a href="./accounting/ledger.html" class="block px-4 py-2 hover:bg-gray-700">Ledger</a>
+          <a href="./accounting/audit.html" class="block px-4 py-2 hover:bg-gray-700">Audit Trail</a>
+        </div>
+      </div>
+
+      <a href="contact.html" class="hover:text-white transition-all">Contact</a>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- Background -->
   <div class="background-img"></div>
