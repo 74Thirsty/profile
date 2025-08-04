@@ -1,62 +1,85 @@
 body {
-    font-family: 'Fira Code', monospace;
-    margin: 0; padding: 0;
-    background-color: #1A1A1A;
-    color: white;
+  font-family: 'Fira Code', monospace;
+  margin: 0;
+  padding: 0;
+  background-color: #1A1A1A;
+  color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+
+html {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .background-img {
-    background-image: url('https://i.ibb.co/3mFnchVp/Block-Chain-Data.png');
-    background-size: cover;
-    background-position: center;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    opacity: 0.5;
-    z-index: -2;
-    pointer-events: none;
+  background-image: url('https://i.ibb.co/3mFnchVp/Block-Chain-Data.png');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+  z-index: -2;
+  pointer-events: none;
 }
+
 canvas {
-    position: fixed;
-    top: 0; left: 0;
-    z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
 }
+
 .h2-pulse {
-    animation: pulseSilveryBlue 2.5s ease-in-out infinite;
+  animation: pulseSilveryBlue 2.5s ease-in-out infinite;
 }
+
 @keyframes pulseSilveryBlue {
-    0%, 100% {
+  0%, 100% {
     color: #B0E0FF;
     text-shadow: 0 0 5px #7BAFD4, 0 0 10px #B0E0FF;
-    }
-    50% {
+  }
+  50% {
     color: #7BAFD4;
     text-shadow: 0 0 15px #B0E0FF, 0 0 25px #7BAFD4;
-    }
+  }
 }
+
 .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
 }
+
 .fade-in.visible {
-    opacity: 1;
-    transform: none;
+  opacity: 1;
+  transform: none;
 }
+
+/* Responsive scroll on mobile */
 @media (max-width: 768px) {
-    html, body {
-    overflow-y: auto;
+  html, body {
     -webkit-overflow-scrolling: touch;
-    }
+  }
 }
+
 /* 3D Card Effect */
 .card-container {
-    background-color: #0a192f;
-    backdrop-filter: blur(10px);
-    border-radius: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 10px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  background-color: #0a192f;
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
+
 .card-container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 20px 30px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 20px 30px rgba(0, 0, 0, 0.1);
 }

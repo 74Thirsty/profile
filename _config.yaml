@@ -6,6 +6,8 @@ site:
   description: "Personal website of Christopher Hirschauer, Blockchain Architect & Python Developer"
   version: "1.0"
   favicon: "/assets/images/favicon.ico"
+  language: "en"
+  locale: "en_US"
 
 # Navigation Bar links
 nav:
@@ -16,10 +18,10 @@ nav:
 
 # Colors and Theme Settings
 theme:
-  primary_color: "#7BAFD4"  # Primary accent color (used in buttons, links, etc.)
-  background_color: "#1A1A1A"  # Dark background color for the site
-  secondary_color: "#0a192f"  # Background color for sections and navigation
-  text_color: "#ffffff"  # Main text color (light theme)
+  primary_color: "#7BAFD4"         # Primary accent color (used in buttons, links, etc.)
+  background_color: "#1A1A1A"      # Dark background color for the site
+  secondary_color: "#0a192f"       # Background color for sections and navigation
+  text_color: "#ffffff"            # Main text color (light theme)
 
 # Fonts (from Tailwind config)
 fonts:
@@ -28,9 +30,9 @@ fonts:
 
 # Social Media Links
 social_media:
-  twitter: "https://twitter.com/your_username"
-  linkedin: "https://linkedin.com/in/your_username"
-  github: "https://github.com/your_username"
+  twitter: "https://twitter.com/hirschauer_eth"
+  linkedin: "https://linkedin.com/in/christopher-hirschauer"
+  github: "https://github.com/74Thirsty"
   email: "mailto:c.hirschauer@outlook.com"
 
 # Banner image for the homepage
@@ -43,22 +45,28 @@ sections:
   specialties: true
   projects: true
   contact: true
+  blog: false         # Set to true when ready to launch blog
 
 # Background Settings
 background:
-  image_url: "https://i.ibb.co/3mFnchVp/Block-Chain-Data.png"  # Background image URL
-  opacity: 0.5  # Opacity of the background image
-  fixed: true  # Whether the background image is fixed or scrolls with the page
+  image_url: "https://i.ibb.co/3mFnchVp/Block-Chain-Data.png"
+  opacity: 0.5
+  fixed: true
 
 # Special effects (Canvas/Grid or Animations)
 effects:
-  canvas_grid: true  # Whether to show the canvas grid animation
-  background_particles: false  # Whether to enable particle effects in the background
+  canvas_grid: true
+  background_particles: false
 
-# Scroll and Fade Effects (For smooth transitions between sections)
+# Scroll and Fade Effects
 scroll:
-  smooth_scrolling: true  # Enables smooth scrolling for better UX
-  fade_in: true  # Enables fade-in effect for sections when they come into view
+  smooth_scrolling: true
+  fade_in: true
+
+# Dark Mode Configuration
+dark_mode:
+  enabled: true
+  toggle: false  # Set to true if user should be able to switch themes
 
 # Project Information
 projects:
@@ -86,7 +94,7 @@ projects:
 
 # Contact Form Settings
 contact_form:
-  email_recipient: "c.hirschauer@outlook.com"  # Email to receive contact form submissions
+  email_recipient: "c.hirschauer@outlook.com"
   success_message: "Thank you for reaching out! I'll get back to you soon."
   error_message: "Oops! Something went wrong. Please try again later."
 
