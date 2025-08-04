@@ -39,6 +39,17 @@
         </div>
       </div>
 
+      <!-- Tools Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
+          Tools ⌄
+        </button>
+        <div x-show="open" x-transition
+            class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="contract_wizard.html" class="block px-4 py-2 hover:bg-gray-700">Smart Contract Wizard</a>
+        </div>
+      </div>
+
       <!-- AutoGAAP Dropdown -->
       <div x-data="{ open: false }" class="relative">
         <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
