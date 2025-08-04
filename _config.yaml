@@ -72,25 +72,43 @@ dark_mode:
 projects:
   - name: "Inside the Black Forest"
     description: "Deep dive into MEV strategy and execution."
-    link: "https://example.com/project1"
+    link: "https://gist.github.com/74Thirsty/a97a5e84d10c5caec0c7281d006ea2cd"
+
   - name: "Ctrl+C, Ctrl+V, and the Death of Reason"
     description: "A philosophical exploration of automation and reasoning."
-    link: "https://example.com/project2"
+    link: "https://example.com/project2"  # Placeholder, no gist provided
+
   - name: "Smart Contracts"
     description: "Engineering the future of business and finance with smart contracts."
-    link: "https://example.com/project3"
+    link: "https://example.com/project3"  # Placeholder, no gist provided
+
   - name: "Downloader"
     description: "A user-friendly yt-dlp script for media downloads."
-    link: "https://example.com/project4"
+    link: "https://gist.github.com/74Thirsty/8c3973574dc01063363a6959dc35a941"
+
   - name: "dexSwapper"
     description: "Multi-token, multi-hop arbitrage execution bot."
-    link: "https://example.com/project5"
+    link: "https://example.com/project5"  # Placeholder, no gist provided
+
   - name: "alphaEdge"
     description: "Advanced predictive algorithms for optimized arbitrage."
-    link: "https://example.com/project6"
+    link: "https://example.com/project6"  # Placeholder, no gist provided
+
   - name: "autoGAAP"
     description: "Automated tool to scan financial data for GAAP compliance."
-    link: "https://example.com/project7"
+    link: "https://gist.github.com/74Thirsty/0501bc09f1464c6e81075b6bd6173550"
+
+  - name: "Auto Docker"
+    description: "One-command Dockerizer for Python apps and web services."
+    link: "https://gist.github.com/74Thirsty/82e6aa9b225c8f02858788ca9e5b6b9c"
+
+  - name: "BeagleBone Black Setup"
+    description: "Initial provisioning and IoT setup for BeagleBone Black SBC."
+    link: "https://gist.github.com/74Thirsty/896562e415109d84dc84632ed6bacf3c"
+
+  - name: "VirtualBox Linux Installer"
+    description: "Interactive installer script for setting up Linux VMs on VirtualBox."
+    link: "https://gist.github.com/74Thirsty/cf9043c370f1ebca309bf37ce41043e7"
 
 # Contact Form Settings
 contact_form:
