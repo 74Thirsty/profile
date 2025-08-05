@@ -17,42 +17,64 @@
 </head>
 <body class="bg-gray-800 text-white scroll-smooth relative">
 
-  <!-- Navigation -->
-  <nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
-    <div class="max-w-5xl mx-auto flex justify-between items-center text-sm sm:text-base font-mono text-primary">
-      <a href="index.html" class="hover:text-white transition-all">🏠 Home</a>
-      <div class="flex space-x-6 items-center">
-        <a href="about.html" class="hover:text-white transition-all">About</a>
+<!-- Navigation -->
+<nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
+  <div class="max-w-5xl mx-auto flex justify-between items-center text-sm sm:text-base font-mono text-primary">
+    <a href="index.html" class="hover:text-white transition-all">🏠 Home</a>
+    <div class="flex space-x-6 items-center">
+      <!-- Removed About -->
+      
+      <a href="projects.html" class="hover:text-white transition-all">Projects</a>
 
-        <!-- Projects Link -->
-        <a href="projects.html" class="hover:text-white transition-all">Projects</a>
-
-        <!-- Tools Dropdown -->
-        <div x-data="{ open: false }" class="relative">
-          <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
-            Tools ⌄
-          </button>
-          <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
-            <a href="contract_wizard.html" class="block px-4 py-2 hover:bg-gray-700">Smart Contract Wizard</a>
-          </div>
+      <!-- Tools Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
+          Tools ⌄
+        </button>
+        <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="contract_wizard.html" class="block px-4 py-2 hover:bg-gray-700">Smart Contract Wizard</a>
         </div>
-
-        <!-- AutoGAAP Dropdown -->
-        <div x-data="{ open: false }" class="relative">
-          <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
-            AutoGAAP ⌄
-          </button>
-          <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
-            <a href="./accounting/accounting.html" class="block px-4 py-2 hover:bg-gray-700">Dashboard</a>
-            <a href="./accounting/ledger.html" class="block px-4 py-2 hover:bg-gray-700">Ledger</a>
-            <a href="./accounting/audit.html" class="block px-4 py-2 hover:bg-gray-700">Audit Trail</a>
-          </div>
-        </div>
-
-        <a href="contact.html" class="hover:text-white transition-all">Contact</a>
       </div>
+
+      <!-- AutoGAAP Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
+          AutoGAAP ⌄
+        </button>
+        <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="./accounting/accounting.html" class="block px-4 py-2 hover:bg-gray-700">Dashboard</a>
+          <a href="./accounting/ledger.html" class="block px-4 py-2 hover:bg-gray-700">Ledger</a>
+          <a href="./accounting/audit.html" class="block px-4 py-2 hover:bg-gray-700">Audit Trail</a>
+        </div>
+      </div>
+
+      <!-- Books Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
+          Books ⌄
+        </button>
+        <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="books/rpze.html" class="block px-4 py-2 hover:bg-gray-700">RPZE</a>
+          <a href="books/blackforest.html" class="block px-4 py-2 hover:bg-gray-700">Black Forest</a>
+        </div>
+      </div>
+
+      <!-- Blogs Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
+          Blogs ⌄
+        </button>
+        <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="blogs/devnotes.html" class="block px-4 py-2 hover:bg-gray-700">Dev Notes</a>
+          <a href="blogs/philosophy.html" class="block px-4 py-2 hover:bg-gray-700">Philosophy</a>
+        </div>
+      </div>
+
+      <a href="contact.html" class="hover:text-white transition-all">Contact</a>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <div class="max-w-6xl mx-auto pt-32 px-6">
     <h1 class="text-4xl font-bold text-primary mb-10 text-center">🚀 Project Showcase</h1>
