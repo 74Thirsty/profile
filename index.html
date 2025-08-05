@@ -16,69 +16,77 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script defer src="scripts/canvas.js"></script>
   <script defer src="scripts/main.js"></script>
-
-
-
 </head>
 <body class="bg-gray-800 text-white scroll-smooth relative">
-<!-- Navigation -->
-<!-- Navigation -->
+  <title>GAAP Auto Ledger – Tokyo Neon Edition</title>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.min.js"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+  <!-- p5.js for canvas effects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="scripts/canvas.js"></script>
+  <script defer src="scripts/main.js"></script>
+  <style>
+    
+  </style>
 <nav class="w-full bg-[#0a192f]/90 backdrop-blur-sm p-4 fixed top-0 z-50 shadow-md border-b border-primary">
   <div class="max-w-5xl mx-auto flex justify-between items-center text-sm sm:text-base font-mono text-primary">
     <a href="index.html" class="hover:text-white transition-all">🏠 Home</a>
     <div class="flex space-x-6 items-center">
-      <!-- Removed About -->
-      
-      <a href="projects.html" class="hover:text-white transition-all">Projects</a>
+
+      <!-- Projects Dropdown -->
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
+          Projects ⌄
+        </button>
+        <div x-show="open" x-transition class="absolute left-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="projects/alpha-edge.html" class="block px-4 py-2 hover:bg-gray-700">Alpha Edge</a>
+          <a href="projects/autogaap.html" class="block px-4 py-2 hover:bg-gray-700">AutoGAAP</a>
+          <a href="projects/downloader.html" class="block px-4 py-2 hover:bg-gray-700">Downloader</a>
+          <!-- Add more as needed -->
+        </div>
+      </div>
 
       <!-- Tools Dropdown -->
       <div x-data="{ open: false }" class="relative">
         <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
           Tools ⌄
         </button>
-        <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
-          <a href="contract_wizard.html" class="block px-4 py-2 hover:bg-gray-700">Smart Contract Wizard</a>
+        <div x-show="open" x-transition class="absolute left-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="tools/solidity-wizard.html" class="block px-4 py-2 hover:bg-gray-700">Solidity Wizard</a>
         </div>
       </div>
 
-      <!-- AutoGAAP Dropdown -->
-      <div x-data="{ open: false }" class="relative">
-        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
-          AutoGAAP ⌄
-        </button>
-        <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
-          <a href="./accounting/accounting.html" class="block px-4 py-2 hover:bg-gray-700">Dashboard</a>
-          <a href="./accounting/ledger.html" class="block px-4 py-2 hover:bg-gray-700">Ledger</a>
-          <a href="./accounting/audit.html" class="block px-4 py-2 hover:bg-gray-700">Audit Trail</a>
-        </div>
-      </div>
+      <!-- AutoGAAP Direct Link -->
+      <a href="accounting/dashboard.html" class="hover:text-white transition-all">AutoGAAP</a>
 
       <!-- Books Dropdown -->
       <div x-data="{ open: false }" class="relative">
         <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
           Books ⌄
         </button>
-        <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+        <div x-show="open" x-transition class="absolute left-0 mt-2 w-72 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
+          <a href="books/copy-paste.html" class="block px-4 py-2 hover:bg-gray-700">Copy Paste and the Death of Reason</a>
+          <a href="books/smart-contracts.html" class="block px-4 py-2 hover:bg-gray-700">Smart Contracts</a>
+          <a href="books/blackforest.html" class="block px-4 py-2 hover:bg-gray-700">The Black Forest</a>
           <a href="books/rpze.html" class="block px-4 py-2 hover:bg-gray-700">RPZE</a>
-          <a href="books/blackforest.html" class="block px-4 py-2 hover:bg-gray-700">Black Forest</a>
+          <a href="books/chair-exercises.html" class="block px-4 py-2 hover:bg-gray-700">Chair Exercises for Seniors</a>
+          <a href="books/tai-chi.html" class="block px-4 py-2 hover:bg-gray-700">Seated Tai Chi</a>
+          <a href="books/spartan-vegan.html" class="block px-4 py-2 hover:bg-gray-700">Spartan Vegan Lifestyle</a>
         </div>
       </div>
 
-      <!-- Blogs Dropdown -->
-      <div x-data="{ open: false }" class="relative">
-        <button @click="open = !open" @click.away="open = false" class="hover:text-white transition-all">
-          Blogs ⌄
-        </button>
-        <div x-show="open" x-transition class="absolute right-0 mt-2 w-56 bg-gray-900 text-white border border-gray-600 rounded shadow-lg z-50">
-          <a href="blogs/devnotes.html" class="block px-4 py-2 hover:bg-gray-700">Dev Notes</a>
-          <a href="blogs/philosophy.html" class="block px-4 py-2 hover:bg-gray-700">Philosophy</a>
-        </div>
-      </div>
-
-      <a href="contact.html" class="hover:text-white transition-all">Contact</a>
     </div>
   </div>
 </nav>
+</head>
   <!-- Background -->
   <div class="background-img"></div>
   <canvas id="gridCanvas" class="absolute top-0 left-0 z-0"></canvas>
